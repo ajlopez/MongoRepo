@@ -88,6 +88,23 @@ exports['find documents by name'] = function (test) {
     })
 }
 
+exports['find one document by name'] = function (test) {
+    test.async();
+    
+    repo.findOne({ name: "Adam" }, function (err, doc) {
+        console.log(err);
+        test.ok(!err);
+        test.ok(doc);
+        test.ok(!Array.isArray(doc));
+        test.equal(typeof doc, "object");
+        test.equal(doc.name, "Adam");
+        test.equal(doc.age, 800);
+        test.ok(doc._id);
+        
+        test.done();
+    })
+}
+
 exports['find documents with projection'] = function (test) {
     test.async();
     
