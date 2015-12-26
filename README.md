@@ -38,6 +38,10 @@ TBD
 
 TBD
 
+## References
+
+- [MongoDB Driver](http://mongodb.github.io/node-mongodb-native/)
+
 ## Contribution
 
 Feel free to [file issues](https://github.com/ajlopez/MongoRepo) and submit
