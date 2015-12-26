@@ -115,7 +115,7 @@ exports['find one document by name'] = function (test) {
 exports['find document by id'] = function (test) {
     test.async();
     
-    repo.findById(adamId, function (err, doc) {
+    repo.find(adamId, function (err, doc) {
         test.ok(!err);
         test.ok(doc);
         test.ok(!Array.isArray(doc));
@@ -131,7 +131,7 @@ exports['find document by id'] = function (test) {
 exports['find document by id with projection'] = function (test) {
     test.async();
     
-    repo.findById(adamId, { name: 1}, function (err, doc) {
+    repo.find(adamId, { name: 1}, function (err, doc) {
         test.ok(!err);
         test.ok(doc);
         test.ok(!Array.isArray(doc));
