@@ -19,7 +19,8 @@
     "test": "simpleunit ./test -r"
   },
   "dependencies": {
-    "mongodb": "2.1.2"
+    "mongodb": "2.1.2",
+    "simpleasync": "0.0.8"
   },
   "devDependencies": {
     "simpleunit": "0.0.7"

@@ -2,6 +2,7 @@
 var mr = require('..');
 
 var db;
+var repo;
 
 exports['open database'] = function (test) {
     test.async();
@@ -18,12 +19,24 @@ exports['open database'] = function (test) {
 };
 
 exports['create repository'] = function (test) {
-    var repo = mr.createRepository(db, 'persons');
+    repo = mr.createRepository(db, 'persons');
 
     test.ok(repo);
     test.equal(typeof repo, 'object');
-    test.ok(repo.insert);
-    test.equal(typeof repo.insert, 'function');
+}
+
+exports['insert document'] = function (test) {
+    test.async();
+    
+    var adam = { name: "Adam", age: 800 };
+    
+    repo.insert(adam, function (err, id) {
+        test.ok(!err);
+        test.ok(id);
+        test.ok(!Array.isArray(id));
+        test.equal(typeof id, "object");
+        test.done();
+    })
 }
 
 exports['close database'] = function (test) {
@@ -34,3 +47,4 @@ exports['close database'] = function (test) {
         test.done();
     })
 };
+
