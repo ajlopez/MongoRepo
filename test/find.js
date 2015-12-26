@@ -5,6 +5,9 @@ var sl = require('simplelists');
 var db;
 var repo;
 
+var adamId;
+var eveId;
+
 exports['open database'] = function (test) {
     test.async();
     
@@ -46,6 +49,10 @@ exports['insert documents'] = function (test) {
         test.equal(ids.length, 2);
         test.equal(typeof ids[0], "object");
         test.equal(typeof ids[1], "object");
+        
+        adamId = ids[0];
+        eveId = ids[1];
+        
         test.done();
     })
 }
@@ -99,6 +106,38 @@ exports['find one document by name'] = function (test) {
         test.equal(typeof doc, "object");
         test.equal(doc.name, "Adam");
         test.equal(doc.age, 800);
+        test.ok(doc._id);
+        
+        test.done();
+    })
+}
+
+exports['find document by id'] = function (test) {
+    test.async();
+    
+    repo.findById(adamId, function (err, doc) {
+        test.ok(!err);
+        test.ok(doc);
+        test.ok(!Array.isArray(doc));
+        test.equal(typeof doc, "object");
+        test.equal(doc.name, "Adam");
+        test.equal(doc.age, 800);
+        test.ok(doc._id);
+        
+        test.done();
+    })
+}
+
+exports['find document by id with projection'] = function (test) {
+    test.async();
+    
+    repo.findById(adamId, { name: 1}, function (err, doc) {
+        test.ok(!err);
+        test.ok(doc);
+        test.ok(!Array.isArray(doc));
+        test.equal(typeof doc, "object");
+        test.equal(doc.name, "Adam");
+        test.equal(doc.age, null);
         test.ok(doc._id);
         
         test.done();
