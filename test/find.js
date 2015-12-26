@@ -37,7 +37,7 @@ exports['insert documents'] = function (test) {
     test.async();
     
     var adam = { name: "Adam", age: 800 };
-    var eve = { name: "Adam", age: 800 }; 
+    var eve = { name: "Eve", age: 700 }; 
     
     repo.insert([adam, eve], function (err, ids) {
         test.ok(!err);
@@ -54,7 +54,6 @@ exports['find documents'] = function (test) {
     test.async();
     
     repo.find(function (err, docs) {
-        console.log(err);
         test.ok(!err);
         test.ok(docs);
         test.ok(Array.isArray(docs));
@@ -62,8 +61,28 @@ exports['find documents'] = function (test) {
         test.equal(typeof docs[0], "object");
         test.equal(typeof docs[1], "object");
         
-        sl.exist(docs, { name: "Adam", age: 800 });
-        sl.exist(docs, { name: "Eve", age: 700 });
+        test.ok(sl.exist(docs, { name: "Adam", age: 800 }));
+        test.ok(sl.exist(docs, { name: "Eve", age: 700 }));
+        test.ok(sl.all(docs, function (doc) { return doc._id; }));
+        
+        test.done();
+    })
+}
+
+exports['find documents by name'] = function (test) {
+    test.async();
+    
+    repo.find({ name: "Adam" }, function (err, docs) {
+        console.log(err);
+        test.ok(!err);
+        test.ok(docs);
+        test.ok(Array.isArray(docs));
+        test.equal(docs.length, 1);
+        test.equal(typeof docs[0], "object");
+        
+        test.ok(sl.exist(docs, { name: "Adam", age: 800 }));
+        test.ok(!sl.exist(docs, { name: "Eve", age: 700 }));
+        test.ok(sl.all(docs, function (doc) { return doc._id; }));
         
         test.done();
     })
