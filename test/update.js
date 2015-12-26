@@ -74,6 +74,23 @@ exports['update document by id'] = function (test) {
     })
 }
 
+exports['update document by name'] = function (test) {
+    test.async();
+    
+    repo.update({ name: "Eve" }, { age: 701 }, function (err, data) {
+        test.ok(!err);
+        
+        repo.find(eveId, function (err, doc) {
+            test.ok(!err);
+            test.ok(doc);
+            test.equal(doc.name, "Eve");
+            test.equal(doc.age, 701);
+            
+            test.done();
+        });
+    })
+}
+
 exports['close database'] = function (test) {
     test.async();
     
