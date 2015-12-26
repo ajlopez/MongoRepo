@@ -80,7 +80,6 @@ exports['find documents by name'] = function (test) {
     test.async();
     
     repo.find({ name: "Adam" }, function (err, docs) {
-        console.log(err);
         test.ok(!err);
         test.ok(docs);
         test.ok(Array.isArray(docs));
@@ -99,7 +98,6 @@ exports['find one document by name'] = function (test) {
     test.async();
     
     repo.findOne({ name: "Adam" }, function (err, doc) {
-        console.log(err);
         test.ok(!err);
         test.ok(doc);
         test.ok(!Array.isArray(doc));
