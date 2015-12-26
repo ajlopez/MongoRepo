@@ -18,7 +18,7 @@ exports['open database without options'] = function (test) {
 exports['open database with option'] = function (test) {
     test.async();
     
-    mr.openDatabase('mongorepo-test', function (err, db) {
+    mr.openDatabase('mongorepo-test', { host: 'localhost', port: 27017 }, function (err, db) {
         test.ok(!err);
         test.ok(db);
         test.ok(db.close);
