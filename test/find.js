@@ -50,8 +50,8 @@ exports['insert documents'] = function (test) {
         test.equal(typeof ids[0], "object");
         test.equal(typeof ids[1], "object");
         
-        adamId = ids[0];
-        eveId = ids[1];
+        adamId = ids[0].toString();
+        eveId = ids[1].toString();
         
         test.done();
     })
