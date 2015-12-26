@@ -88,6 +88,26 @@ exports['find documents by name'] = function (test) {
     })
 }
 
+exports['find documents with projection'] = function (test) {
+    test.async();
+    
+    repo.find({}, { name: 1}, function (err, docs) {
+        test.ok(!err);
+        test.ok(docs);
+        test.ok(Array.isArray(docs));
+        test.equal(docs.length, 2);
+        test.equal(typeof docs[0], "object");
+        test.equal(typeof docs[1], "object");
+        
+        test.ok(sl.exist(docs, { name: "Adam" }));
+        test.ok(sl.exist(docs, { name: "Eve" }));
+        test.ok(sl.all(docs, function (doc) { return doc._id; }));
+        test.ok(sl.all(docs, function (doc) { return doc.age == null; }));
+        
+        test.done();
+    })
+}
+
 exports['close database'] = function (test) {
     test.async();
     
