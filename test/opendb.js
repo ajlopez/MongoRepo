@@ -9,9 +9,10 @@ exports['open database without options'] = function (test) {
         test.ok(db);
         test.ok(db.close);
         test.equal(typeof db.close, 'function');
-        db.close();
-        
-        test.done();
+        db.close(true, function (err, data) {
+            test.ok(!err);
+            test.done();
+        });
     });
 };
 
@@ -23,8 +24,9 @@ exports['open database with option'] = function (test) {
         test.ok(db);
         test.ok(db.close);
         test.equal(typeof db.close, 'function');
-        db.close();
-        
-        test.done();
+        db.close(true, function (err, data) {
+            test.ok(!err);
+            test.done();
+        });
     });
 };
