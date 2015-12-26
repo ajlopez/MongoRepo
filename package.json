@@ -1,0 +1,17 @@
+{ "name": "mongorepo"
+, "description": "MongoDB repository"
+, "keywords": [ "mongodb", "repository" ]
+, "version": "0.0.1alpha"
+, "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
+, "repository": { "type": "git", "url": "git://github.com/ajlopez/MongoRepo.git" }
+, "main": "./lib/mongorepo.js"
+, "engines": { "node": ">= 0.10.0" }
+, "scripts": {
+    "test": "simpleunit ./test -r"
+  }
+, "dependencies": {
+  }
+, "devDependencies": {
+    "simpleunit": "0.0.7"
+  }
+}
