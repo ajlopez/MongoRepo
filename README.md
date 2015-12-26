@@ -40,7 +40,8 @@ TBD
 
 ## References
 
-- [MongoDB Driver](http://mongodb.github.io/node-mongodb-native/)
+- [MongoDB NodeJS Driver](http://mongodb.github.io/node-mongodb-native/)
+- [MongoDB Read Operations](https://docs.mongodb.org/v3.0/core/read-operations-introduction/)
 
 ## Contribution
 

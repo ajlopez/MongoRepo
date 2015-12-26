@@ -23,6 +23,7 @@
     "simpleasync": "0.0.8"
   },
   "devDependencies": {
+    "simplelists": "0.0.5",
     "simpleunit": "0.0.7"
   }
 }
