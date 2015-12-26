@@ -91,6 +91,24 @@ exports['update document by name'] = function (test) {
     })
 }
 
+exports['update many documents'] = function (test) {
+    test.async();
+    
+    repo.update({ age: { $gt: 0 } }, { updated: true }, function (err, data) {
+        test.ok(!err);
+        
+        repo.find(function (err, docs) {
+            test.ok(!err);
+            test.ok(docs);
+            test.ok(docs.length);
+            test.equal(docs.length, 2);
+            test.ok(sl.all(docs, { updated: true }));
+            
+            test.done();
+        });
+    })
+}
+
 exports['close database'] = function (test) {
     test.async();
     
